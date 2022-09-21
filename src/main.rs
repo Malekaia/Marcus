@@ -3,15 +3,15 @@ mod parser;
 mod regex;
 
 fn main() {
-  let mut html: String = r#"\> Level 1
->> Level 2
-> Level 1.1
+  let mut html: String = r#"> Level 1
+>> Level 1.1
+>> Level 1.2
 
 Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
 
->>> Level \3
-> Level 1.1
-> Level 1.1 Cite
+>>> Level 3
+> Level 3-X
+> Level 3-Y -- Cite
 
 Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
 
@@ -30,9 +30,14 @@ Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adi
 > Note: `--capt-add=SYS-ADMIN` is required for PDF rendering.
 "#.to_string();
 
-  parser::escape::default(&mut html);
+  const ALLOW_COMMENTS: bool = false;
 
-  println!("{html}");
+
+  parser::escape::default(&mut html);
+  parser::comments::default(&mut html, ALLOW_COMMENTS);
+  parser::blockquotes::default(&mut html);
+
+  // println!("{html}");
 
 
 }
