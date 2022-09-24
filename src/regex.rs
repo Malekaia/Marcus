@@ -3,7 +3,7 @@ pub mod RE {
   // BASIC
   pub const ESCAPE: &str = r"\\(.{1})"; // Order: first in order
   pub const COMMENTS: &str = r"<!--(.*?)-->"; // Optional
-  pub const BLOCKQUOTE: &str = r"([>]{1,}.*?\n)+";
+  pub const BLOCKQUOTE: &str = r"([>]{1,}.*?(\n)+)+";
   pub const INLINE_CODE: &str = r"`{1}([^`]+)`{1}";
   pub const EMPHASIS_BOLD_ITALIC: &str = r"[*]{3}(.*?)[*]{3}|[_]{3}(.*?)[_]{3}"; // Order: before bold emphasis
   pub const EMPHASIS_BOLD: &str = r"[*]{2}(.*?)[*]{2}|[_]{2}(.*?)[_]{2}"; // Order: before italic emphasis

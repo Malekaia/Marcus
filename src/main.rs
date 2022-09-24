@@ -4,15 +4,15 @@ mod regex;
 
 fn main() {
   let mut html: String = r#"> Level 1
->> Level 1.1
+> Level 1.1
 >> Level 1.2
 
 Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
 
->>> Level 3
-> Level 3-X
-> Level 3-Y -- Cite
-> Level 3-Z -- Cite -- Cite 2 -- Cite 3
+> Level 3
+>> Level 3-X
+>>> Level 3-Y -- Cite
+>>>> Level 3-Z -- Cite -- Cite 2 -- Cite 3
 
 Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
 
@@ -38,7 +38,7 @@ Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adi
   parser::comments::default(&mut html, ALLOW_COMMENTS);
   parser::blockquotes::default(&mut html);
 
-  // println!("{html}");
+  println!("{html}");
 
 
 }

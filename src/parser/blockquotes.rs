@@ -1,61 +1,115 @@
 use crate::regex::RE;
 use regex::Regex;
 
+// Data struct for blockquotes
 #[derive(Debug)]
 pub struct Blockquote {
-  pub count: usize,
+  pub size: usize,
   pub text: String,
   pub cite: String,
 }
 
-pub fn default(html: &mut String) {
+pub fn default(html: &mut String) -> () {
   // Create the escape regex
   let re: Regex = Regex::new(RE::BLOCKQUOTE).unwrap();
-  // Check for escaped characters
-  if re.is_match(html) {
+  // Items to replace
+  let mut blockquote_replacements: Vec<(String, String)> = vec![];
+  // Ignore non matches
+  if !re.is_match(html) {
+    return ();
+  }
+
+  // Extract all blockquote groups
+  for capture in re.captures_iter(html) {
+    /*
+     * EXTRACT BLOCKQUOTES
+     */
     // Define vectors to group the blockquotes
-    let mut blockquote_groups: Vec<Vec<Blockquote>> = vec![];
-    let mut current_group: Vec<Blockquote> = vec![];
-    // Extract all blockquote groups
-    for capture in re.captures_iter(html) {
-      // Extract each blockquote in the current group
-      for mut quote in capture[0].trim().split("\n").map(| item: &str | item.trim().to_string()).collect::<Vec<String>>() {
-        // Define the blockquote properties
-        let mut count: usize = 0;
-        let (text, cite): (String, String);
-        // Determine size of blockquote
-        while quote.starts_with(">") {
-          quote.remove(0);
-          count += 1;
-        }
-        // Get the blockquote text & trim it
-        quote = quote.trim().to_string();
-        // Determine if the blockquote contains text and/or cite & extract them
-        if quote.contains("--") {
-          // Separate blockquote text and cite
-          let text_cite: Vec<String> = quote.split(" -- ").map(| pair: &str | pair.trim().to_string()).collect::<Vec<String>>();
-          // Blockquote has text but no cite
-          if text_cite.len() == 1 {
-            (text, cite) = (text_cite[0].to_owned(), String::new());
-          // Blockquote has text and cite
-          } else if text_cite.len() == 2 {
-            (text, cite) = (text_cite[0].to_owned(), text_cite[1].to_owned());
-          // Blockquote has text and multiple cite definitions
-          } else {
-            (text, cite) = (text_cite[0].to_owned(), text_cite[1..].join(", "));
-          }
-        // Blockquote has no cite
-        } else {
-          (text, cite) = (quote, String::new());
-        }
-        // Add the current blockquote to it's group
-        current_group.push(Blockquote { count, cite, text });
+    let mut blockquote_group: Vec<Blockquote> = vec![];
+    // Iterate the captured blockquotes
+    for mut text in capture[0].trim().split("\n") {
+      // Find the blockquote size
+      let mut size: usize = 0;
+      while text.starts_with(">") {
+        text = &text[1..];
+        size += 1;
       }
-      // Add the group to the group vector and clear it for the next iteration
-      blockquote_groups.push(current_group);
-      current_group = vec![];
+      // Remove leading and trailing whitespace
+      text = text.trim();
+      // Extract blockquote cite
+      let mut cite: &str = "";
+      if text.contains(" -- ") {
+        match text.find(" -- ") {
+          // Extract the cite and update the quote text
+          Some(position) => {
+            cite = &text[(position + 4)..].trim();
+            text = &text[..position].trim();
+          },
+          // ignore non matches
+          None => { }
+        };
+      }
+      // Add the blockquote to the current group
+      blockquote_group.push(Blockquote {
+        // Add the blockquote size and text
+        size, text: text.to_string(),
+        // Replace multiple cites with commas
+        cite: cite.replace(" -- ", ", ")
+      });
     }
-    // Debug
-    println!("{:#?}", blockquote_groups);
+
+    /*
+     * CONVERT TO HTML
+     */
+    // The new HTML string
+    let mut result: String = String::new();
+    // Blockquote HTML template
+    let blockquote_template: String = "<blockquote>%text\n<cite>%cite</cite>\n%child</blockquote>".to_string();
+    // Store the previous size
+    let mut prev_size: usize = 1;
+    // Iterate the blockquotes
+    for (i, blockquote) in blockquote_group.into_iter().enumerate() {
+      // Capture the cite and it's replacement
+      let (cite_capture, cite_replace): (&str, &str) = if blockquote.cite.len() == 0 {
+        ("<cite>%cite</cite>", "")
+      } else {
+        ("%cite", &blockquote.cite)
+      };
+      // First blockquote `size` must be `1`
+      if i == 0 && blockquote.size > 1 {
+        panic!("Marcus: ParseError: Parent blockquote size must be 1");
+      }
+      // Parent
+      else if i == 0 {
+        result = blockquote_template.replace("%text", &blockquote.text).replace(cite_capture, cite_replace);
+      }
+      // Child of Parent
+      else if blockquote.size > prev_size {
+        result = result.replace("%child", &blockquote_template.replace("%text", &blockquote.text).replace(cite_capture, cite_replace));
+      }
+      // Next Sibling of Parent
+      else {
+        result = result.replace("%child", "");
+        result.push_str("\n");
+        result.push_str(&blockquote_template.replace("%text", &blockquote.text).replace(cite_capture, cite_replace))
+      }
+      // Update the previous size
+      prev_size = blockquote.size;
+    }
+
+    /*
+     * WRAP UP
+     */
+    // Remove unresolved children
+    result = result.replace("%child", "");
+    // Add to replacement vector
+    blockquote_replacements.push((capture[0].to_string(), result));
+  }
+
+  /*
+   * REPLACE MD WITH HTML
+   */
+  for (capture, replacement) in blockquote_replacements {
+    *html = html.replace(&capture, &replacement);
   }
 }
