@@ -1,25 +1,27 @@
-mod lib;
 mod parser;
 mod regex;
+use std::fs;
+
+// File read util
+fn read_file(file_path: &str) -> String {
+  fs::read_to_string(file_path)
+     .expect("Should have been able to read the file")
+}
 
 fn main() {
-  let mut html: String = r#"Neque porro **quisquam** est qui dolorem ***ipsum*** quia dolor sit amet, *consectetur*, adipisci velit
-
-Bold: **bold text**, Italic: *italic text*, Bold Italic: ***bold italic text***
-
-Marker also supports emphasis: *this text will be italic*, _this will also be italic_, **this text will be bold**, __This will also be bold__, _you **can** also **combine** them and have *multiple* on one line_.
-
-For example, ___this will be bold italic___ and ***this will also be bold italic***."#.to_string();
-
+  // OPTIONS
   const ALLOW_COMMENTS: bool = false;
 
+  // READ MD FILE
+  let mut html: String = read_file("./test/basic/heading.md");
+
+  // PARSER METHODS
   parser::escape::default(&mut html);
   parser::comments::default(&mut html, ALLOW_COMMENTS);
   parser::blockquotes::default(&mut html);
   parser::inline_code::default(&mut html);
   parser::emphasis::default(&mut html);
 
+  // DEBUG
   println!("{html}");
-
-
 }
