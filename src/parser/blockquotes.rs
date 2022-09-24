@@ -10,7 +10,7 @@ pub struct Blockquote {
 }
 
 pub fn default(html: &mut String) -> () {
-  // Create the escape regex
+  // Create the regex
   let re: Regex = Regex::new(RE::BLOCKQUOTE).unwrap();
   // Items to replace
   let mut blockquote_replacements: Vec<(String, String)> = vec![];
