@@ -21,6 +21,7 @@ fn main() {
   parser::blockquotes::default(&mut html);
   parser::inline_code::default(&mut html);
   parser::emphasis::default(&mut html);
+  parser::headings::default(&mut html);
 
   // DEBUG
   println!("{html}");
