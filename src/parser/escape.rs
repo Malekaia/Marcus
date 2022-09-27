@@ -4,7 +4,7 @@ use regex::Regex;
 use std::borrow::Cow;
 
 pub fn default(html: &mut String) {
-  // Create the escape regex
+  // Create the regex
   let re: Regex = Regex::new(RE::ESCAPE).unwrap();
   // Check for escaped characters
   if re.is_match(html) {
