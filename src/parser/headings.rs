@@ -1,30 +1,18 @@
 use crate::regex::RE;
-use regex::Regex;
+use crate::parser::replacer;
 
 pub fn default(html: &mut String) {
-  /*
-   * HEADINGS (WITH ID)
-   */
-  // Create the regex
-  let re: Regex = Regex::new(RE::HEADING_WITH_ID).unwrap();
-  // Check for headings with ID
-  if re.is_match(html) {
-    // Iter all captures
-    for capture in re.captures_iter(html.clone().as_ref()) {
-      unimplemented!();
-    }
-  }
+  // Headings (with ID)
+  replacer(html, RE::HEADING_WITH_ID, | capture | {
+    // Extract the heading's size, text and id
+    let (size, text, id): (usize, &str, &str) = (capture[1].trim().len(), capture[2].trim(), capture[3].trim());
+    (capture[0].to_string(), format!("<h{size} id=\"{id}\">{text}</h{size}>\n"))
+  });
 
-  /*
-   * HEADINGS (WITHOUT ID)
-   */
-  // Create the regex
-  let re: Regex = Regex::new(RE::HEADING).unwrap();
-  // Check for headings without ID
-  if re.is_match(html) {
-    // Iter all captures
-    for capture in re.captures_iter(html.clone().as_ref()) {
-      unimplemented!();
-    }
-  }
+  // Headings (without ID)
+  replacer(html, RE::HEADING, | capture | {
+    // Extract the heading's size and text
+    let (size, text): (usize, &str) = (capture[1].trim().len(), capture[2].trim());
+    (capture[0].to_string(), format!("<h{size}>{text}</h{size}>\n"))
+  });
 }
