@@ -13,7 +13,7 @@ fn main() {
   const ALLOW_COMMENTS: bool = false;
 
   // READ MD FILE
-  let mut html: String = read_file("./test/basic/heading.md");
+  let mut html: String = read_file("./test/extended/heading-id.md");
 
   // PARSER METHODS
   parser::escape::default(&mut html);
