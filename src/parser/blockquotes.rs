@@ -23,23 +23,23 @@ pub fn default(html: &mut String) {
     let (mut prev_size, mut result): (usize, String) = (1, String::new());
 
     // Convert MD blockquotes to data struct
-    capture[0].trim().split("\n").map(| mut text: &str | -> Blockquote {
+    capture[0].trim().split("\n").map(| mut line: &str | -> Blockquote {
       // Find the blockquote size
       let mut size: usize = 0;
-      while text.starts_with(">") {
-        text = &text[1..];
+      while line.starts_with(">") {
+        line = &line[1..];
         size += 1;
       }
       // Remove leading and trailing whitespace
-      text = text.trim();
+      line = line.trim();
       // Extract blockquote cite
       let (mut cite, cite_split): (&str, &str) = ("", " -- ");
-      if text.contains(cite_split) {
-        match text.find(cite_split) {
+      if line.contains(cite_split) {
+        match line.find(cite_split) {
           // Extract the cite and update the quote text
           Some(position) => {
-            cite = &text[(position + cite_split.len())..].trim();
-            text = &text[..position].trim();
+            cite = &line[(position + cite_split.len())..].trim();
+            line = &line[..position].trim();
           },
           // ignore non matches
           None => { }
@@ -48,7 +48,7 @@ pub fn default(html: &mut String) {
       // Add the blockquote to the current group
       Blockquote {
         // Add the blockquote size and text
-        size, text: text.to_string(),
+        size, text: line.to_string(),
         // Replace multiple cites with commas
         cite: cite.replace(" -- ", ", ")
       }
