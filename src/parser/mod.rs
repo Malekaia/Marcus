@@ -7,18 +7,24 @@ pub mod headings;
 
 use regex::{Captures, Regex};
 
-pub fn replacer<F: Fn(Captures) -> (String, String)>(html: &mut String, regex: &str, method: F) {
-  // Create the regex
+pub fn replacer<F: Fn(Captures) -> String>(html: &mut String, regex: &str, handler: F) {
+  // Create the specified regular expression
   let re: Regex = Regex::new(regex).unwrap();
-  // Check for headings with ID
-  if re.is_match(&html) {
-    // Iter all captures
-    let parsed: Vec<(String, String)> = re.captures_iter(&html)
-      .map(| capture: Captures | -> (String, String) { method(capture) })
-      .collect::<Vec<(String, String)>>();
-    // Replace the parsed capture with it's replacement
-    for (capture, replacement) in parsed {
-      *html = html.replace(&capture, &replacement);
-    }
+
+  // Ignore non-matches
+  if !re.is_match(&html) {
+    return ()
+  }
+
+  // Parse MD to HTML using user defined handler
+  let parsed: Vec<(String, String)> = re.captures_iter(&html)
+    // Replace captures with return of handler function
+    .map(| capture: Captures | (capture[0].to_string(), handler(capture)))
+    // collect into vector of string tuple
+    .collect::<Vec<(String, String)>>();
+
+  // Replace the MD capture with the parsed HTML
+  for (capture, parsed) in parsed {
+    *html = html.replace(&capture, &parsed);
   }
 }
