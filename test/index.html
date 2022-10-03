@@ -7,53 +7,26 @@
   <title>Marcus: Test File</title>
 </head>
 <body>
-  <h2>Basic:</h2>
-  <button data-location="./basic/blockquote.html">blockquote</button>
-  <button data-location="./basic/code.html">code</button>
-  <button data-location="./basic/comments.html">comments</button>
-  <button data-location="./basic/emphasis.html">emphasis</button>
-  <button data-location="./basic/heading.html">heading</button>
-  <button data-location="./basic/horizontal-rule.html">horizontal-rule</button>
-  <button data-location="./basic/image.html">image</button>
-  <button data-location="./basic/link.html">link</button>
-  <button data-location="./basic/list.html">list</button>
-  <button data-location="./basic/paragraphs.html">paragraphs</button>
+  <select id="basic"></select>
+  <select id="custom"></select>
+  <select id="extended"></select>
 
-  <h2>Custom:</h2>
-  <button data-location="./custom/auto-email.html">auto-email</button>
-  <button data-location="./custom/inline-ignore.html">inline-ignore</button>
-
-  <h2>Extended:</h2>
-  <button data-location="./extended/definition-list.html">definition-list</button>
-  <button data-location="./extended/emoji.html">emoji</button>
-  <button data-location="./extended/fenced-code-block.html">fenced-code-block</button>
-  <button data-location="./extended/footnote.html">footnote</button>
-  <button data-location="./extended/heading-id.html">heading-id</button>
-  <button data-location="./extended/highlight.html">highlight</button>
-  <button data-location="./extended/strikethrough.html">strikethrough</button>
-  <button data-location="./extended/subscript.html">subscript</button>
-  <button data-location="./extended/superscript.html">superscript</button>
-  <button data-location="./extended/table.html">table</button>
-  <button data-location="./extended/task-list.html">task-list</button>
-
-  <h2>View:</h2>
-  <iframe id="display-box" src="" style="width: 80%; height: 420px; border: 1px solid #777"></iframe>
+  <div class="preview-container">
+    <pre class="preview" id="preview-md"></pre>
+    <pre class="preview" id="preview-html"></pre>
   </div>
 
-  <script type="text/javascript">
-    // Cache the display box and view change buttons
-    let iframe = document.getElementById("display-box");
-    let buttons = [...(document.querySelectorAll("button[data-location]") || [])];
 
-    // View change handler
-    function change_view() {
-      iframe.src = this.getAttribute("data-location");
+  <style>
+    .preview {
+      background-color: #EEE;
+      width: 48vw;
+      height: 90vh;
+      overflow: auto;
+      border: 1px solid blue;
+      display: inline-block
     }
-
-    // Assign button clicks to view change method
-    for (var button of buttons) {
-      button.addEventListener("click", change_view, false);
-    }
-  </script>
+  </style>
+  <script type="text/javascript" src="./index.js"></script>
 </body>
 </html>
