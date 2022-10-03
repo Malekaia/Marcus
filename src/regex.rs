@@ -5,12 +5,12 @@ pub mod RE {
    */
   pub const ESCAPE: &str = r"\\(.{1})"; // Order: first in order
   pub const COMMENTS: &str = r"<!--(.*?)-->"; // Optional
-  pub const BLOCKQUOTE: &str = r"([>]{1,}.*?(\n)+)+";
+  pub const BLOCKQUOTE: &str = r"(^|\n)+([>]{1,}.*?(\n)+)+";
   pub const INLINE_CODE: &str = r"`{1}([^`]+)`{1}";
   pub const EMPHASIS_BOLD_ITALIC: &str = r"[*]{3}(.*?)[*]{3}|[_]{3}(.*?)[_]{3}"; // Order: before bold emphasis
   pub const EMPHASIS_BOLD: &str = r"[*]{2}(.*?)[*]{2}|[_]{2}(.*?)[_]{2}"; // Order: before italic emphasis
   pub const EMPHASIS_ITALIC: &str = r"[*]{1}(.*?)[*]{1}|[_]{1}(.*?)[_]{1}";
-  pub const HEADING: &str = r"([#]{1,})(.*?)\n+";
+  pub const HEADING: &str = r"(^|\n)+([#]{1,})(.*?)\n+";
   pub const HORIZONTAL_RULE: &str = r"\n([\s]{0,}[*-_][\s]{0,}){3,}\n";
   pub const IMAGE_WITH_TITLE: &str = r#"\!\[(.*?)\]\((.*?)\((.*?)\)\)|\!\[(.*?)\]\((.*?)\"(.*?)\"\)|\!\[(.*?)\]\((.*?)\'(.*?)\'\)"#;
   pub const IMAGE: &str = r"\!\[(.*?)\]\((.*?)\)";
@@ -39,7 +39,7 @@ pub mod RE {
   pub const FENCED_CODE_BLOCK: &str = r"```(\n|.)*?```";
   pub const FOOTNOTE_DEFINITION: &str = r"\[\^([0-9]{1,})\][\s]{0,}:[\s]{0,}(.*?)(\n|$)";
   pub const FOOTNOTE: &str = r"\[\^([0-9]{1,})\]";
-  pub const HEADING_WITH_ID: &str = r"([#]{1,})(.*?)\{\#(.*?)\}\n+"; // Order: before heading without ID, CATEGORY: CUSTOM
+  pub const HEADING_WITH_ID: &str = r"(^|\n)+([#]{1,})(.*?)\{\#(.*?)\}\n+"; // Order: before heading without ID, CATEGORY: CUSTOM
   pub const HIGHLIGHT: &str = r"==(.*?)==";
   pub const STRIKETHROUGH: &str = r"~~(.*?)~~";
   pub const SUBSCRIPT: &str = r"~(.*?)~";

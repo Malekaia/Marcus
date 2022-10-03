@@ -7,12 +7,12 @@ pub fn default(html: &mut String) {
   replacer(html, RE::HEADING_WITH_ID, | capture: Captures |
     format!(
       "<h{size} id=\"{id}\">{text}</h{size}>\n",
-      size = capture[1].trim().len(), text = capture[2].trim(), id = capture[3].trim()
+      size = capture[2].trim().len(), text = capture[3].trim(), id = capture[4].trim()
     )
   );
 
   // Headings (without ID), extract the heading's size and text
   replacer(html, RE::HEADING, | capture: Captures |
-    format!("<h{size}>{text}</h{size}>\n", size = capture[1].trim().len(), text = capture[2].trim())
+    format!("<h{size}>{text}</h{size}>\n", size = capture[2].trim().len(), text = capture[3].trim())
   );
 }

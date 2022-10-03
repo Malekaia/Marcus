@@ -23,7 +23,7 @@ pub fn default(html: &mut String) {
     let (mut prev_size, mut result): (usize, String) = (1, String::new());
 
     // Convert MD blockquotes to data struct
-    capture[0].trim().split("\n").map(| mut line: &str | -> Blockquote {
+    capture[0].trim().lines().map(| mut line: &str | -> Blockquote {
       // Find the blockquote size
       let mut size: usize = 0;
       while line.starts_with(">") {
