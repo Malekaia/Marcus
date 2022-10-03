@@ -1,0 +1,7 @@
+# Linguist overrides
+*.md linguist-detectable=true
+README.md linguist-detectable=false
+readme.md linguist-detectable=false
+LICENCE.md linguist-detectable=false
+license.md linguist-detectable=false
+Cargo.toml linguist-detectable=true
