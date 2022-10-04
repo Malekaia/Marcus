@@ -1,4 +1,8 @@
-This paragraph is followed by a horizontal rule.
+This line will be ignored
+
+*
+
+This paragraph is followed by a horizontal rule
 
 ***
 
