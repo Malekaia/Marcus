@@ -11,7 +11,7 @@ pub mod RE {
   pub const EMPHASIS_BOLD: &str = r"[*]{2}(.*?)[*]{2}|[_]{2}(.*?)[_]{2}"; // Order: before italic emphasis
   pub const EMPHASIS_ITALIC: &str = r"[*]{1}(.*?)[*]{1}|[_]{1}(.*?)[_]{1}";
   pub const HEADING: &str = r"(^|\n+)([#]{1,})(.*?)\n+";
-  pub const HORIZONTAL_RULE: &str = r"\n([\s]{0,}[*-_][\s]{0,}){3,}\n";
+  pub const HORIZONTAL_RULE: &str = r"\n[\s]{0,}(\*|\-|_)(.*?)\n";
   pub const IMAGE_WITH_TITLE: &str = r#"\!\[(.*?)\]\((.*?)\((.*?)\)\)|\!\[(.*?)\]\((.*?)\"(.*?)\"\)|\!\[(.*?)\]\((.*?)\'(.*?)\'\)"#;
   pub const IMAGE: &str = r"\!\[(.*?)\]\((.*?)\)";
   pub const LINK_DEFINE_WITH_TITLE: &str = r#"\[.*?\]\:((.*?)(\"(.*?)\"|\'(.*?)\'|\((.*?)\)))\n"#;

@@ -4,6 +4,7 @@ pub mod blockquotes;
 pub mod inline_code;
 pub mod emphasis;
 pub mod headings;
+pub mod horizontal_rule;
 
 use regex::{Captures, Regex};
 
