@@ -2,7 +2,7 @@
 ## Description:
 Marcus is an experimental Markdown parser written in Rust. It uses [regular expressions](https://docs.rs/regex/latest/regex/#example-iterating-over-capture-groups) and built-in methods (for the [str](https://doc.rust-lang.org/std/primitive.str.html#implementations) &amp; [String](https://doc.rust-lang.org/std/string/struct.String.html#implementations) types) to convert Markdown into HTML.
 
-**Note**: Certain test files (`*.md`) aren't rendered properly by Github preview due to a lack of support for the full Markdown specification.
+**Bug**: Certain test files (`*.md`) aren't rendered properly by Github preview due to a lack of support for the full Markdown specification.
 
 **Warning**: This project is experimental and was created for fun and isn't production tested. Please backup your files when working with file I/O.
 
