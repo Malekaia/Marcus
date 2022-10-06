@@ -44,6 +44,7 @@ fn main() {
       parser::emphasis::default(&mut html);
       parser::headings::default(&mut html);
       parser::horizontal_rule::default(&mut html);
+      parser::links_images_footnotes::default(&mut html);
       // Write to the test file
       write_file(&file_path.replace(".md", ".html"), html);
     });

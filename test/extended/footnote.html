@@ -1,5 +1,20 @@
-Here's a sentence with a footnote. [^1]
+This example demonstrates four types of footnotes:
 
-[^1]: This is the footnote.
+<ol>
+  <li>A line with a footnote<sup><a href="https://example.com">[1]</a></sup>.</li>
+  <li>A line with a duplicate footnote<sup><a href="https://example.com">[1]</a></sup>.</li>
+  <li>A line with a footnote<sup title="This is the footnote." style="cursor:help">[2]</sup> that is title only (I.E: no valid link/href).</li>
+  <li>A line with an undefined footnote<sup style="cursor:not-allowed">[3]</sup>.</li>
+</ol>
 
-This creates a list at the bottom of the page which comes after a horizontal rule.
+
+Here is a list explaining the behaviour of each type of footnote:
+
+<ul>
+  <li>The footnote with a valid href opens the link in a new tab</li>
+  <li>The footnote with a title only text uses the title attribute with a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor#try_it"><code>question mark</code></a> cursor to indicate that the user should hover over it</li>
+  <li>The footnote with an undefined reference does nothing (I.E: it's plain text), and has a <code>not allowed</code> cursor</li>
+  <li>Duplicate footnotes are parsed exactly the same as the original</li>
+</ul>
+
+<p><b>Note</b>: How the plain HTML formatting of this example is ignored</p>

@@ -1,3 +1,5 @@
+[first-of]: http://example.com/  (Optional Title Three)
+
 ![Text for image 1](nasa-CpHNKNRwXps-unsplash.jpg)
 ![Text for image 2](nasa-yZygONrUBe8-unsplash.jpg "Title for image 2")
 ![Text for image 3](niketh-vellanki-QkSN_8XcXwQ-unsplash.jpg 'Title for image 3')

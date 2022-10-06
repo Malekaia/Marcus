@@ -12,12 +12,13 @@ pub mod RE {
   pub const EMPHASIS_ITALIC: &str = r"[*]{1}(.*?)[*]{1}|[_]{1}(.*?)[_]{1}";
   pub const HEADING: &str = r"(^|\n+)([#]{1,})(.*?)\n+";
   pub const HORIZONTAL_RULE: &str = r"\n[\s]{0,}(\*|\-|_)(.*?)\n";
-  pub const IMAGE_WITH_TITLE: &str = r#"\!\[(.*?)\]\((.*?)\((.*?)\)\)|\!\[(.*?)\]\((.*?)\"(.*?)\"\)|\!\[(.*?)\]\((.*?)\'(.*?)\'\)"#;
-  pub const IMAGE: &str = r"\!\[(.*?)\]\((.*?)\)";
-  pub const LINK_DEFINE_WITH_TITLE: &str = r#"\[.*?\]\:((.*?)(\"(.*?)\"|\'(.*?)\'|\((.*?)\)))\n"#;
-  pub const LINK_DEFINE: &str = r"\[.*?\]\:(.*?)\n";
-  pub const LINK_WITH_TITLE: &str = r#"\[(.*?)\]\((.*?)\"(.*?)\"\)|\[(.*?)\]\((.*?)\'(.*?)\'\)"#;
+  pub const LINK_DEFINE_WITH_TITLE: &str = r#"[\S]{0,}\[(.*?)\]:(.*?)('|"|\()(.*?)('|"|\))\n"#;
+  pub const LINK_DEFINE: &str = r"[\S]{0,}\[(.*?)\]:(.*?)\n";
+  pub const IMAGE_WITH_TITLE: &str = r#"!\[(.*?)\]\((.*?)('|"|\()(.*?)('|"|\))\)"#;
+  pub const IMAGE: &str = r"!\[(.*?)\]\((.*?)\)";
+  pub const LINK_WITH_TITLE: &str = r#"\[(.*?)\]\((.*?)('|"|\()(.*?)('|"|\))\)"#;
   pub const LINK: &str = r"\[(.*?)\]\((.*?)\)";
+
   pub const LIST_ITEM: &str = r"((^|[ \t]{0,})([0-9]\.|\*|\-)(.*?)\n)+";
   pub const TASK_LIST: &str = r"(^|\n)[\s]{0,}\-[\s]{0,}\[([\s]{1,}|x)\]"; // CATEGORY: CUSTOM
   pub const PARAGRAPH: &str = r"(^|\n+)([A-Za-z0-9].*?)(\n|$)"; // Order: last item
@@ -37,7 +38,10 @@ pub mod RE {
   pub const DEFINITION_LIST: &str = r"(^|\n)([A-Za-z0-9].*?)\n([\s]{0,}:(.*?)\n)+";
   pub const EMOJI: &str = r"([\s]{1,}:[A-Za-z-_]+:[\s]{1,})";
   pub const FENCED_CODE_BLOCK: &str = r"```(\n|.)*?```";
-  pub const FOOTNOTE_DEFINITION: &str = r"\[\^([0-9]{1,})\][\s]{0,}:[\s]{0,}(.*?)(\n|$)";
+  /* Footnote definitions are automatically caught and parsed by
+   * the "LINK_DEFINE_WITH_TITLE" and "LINK_DEFINE" regular expressions
+   * pub const FOOTNOTE_DEFINITION: &str = r"\[\^([0-9]{1,})\][\s]{0,}:[\s]{0,}(.*?)(\n|$)";
+   */
   pub const FOOTNOTE: &str = r"\[\^([0-9]{1,})\]";
   pub const HEADING_WITH_ID: &str = r"(^|\n+)([#]{1,})(.*?)\{\#(.*?)\}\n+"; // Order: before heading without ID, CATEGORY: CUSTOM
   pub const HIGHLIGHT: &str = r"==(.*?)==";

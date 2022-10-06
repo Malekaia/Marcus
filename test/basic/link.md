@@ -1,5 +1,6 @@
 [title](https://www.example.com)
 [An example](https://example.com "Title for An example")
+[An example 2](https://example.com (Title for An example))
 [Another example](baz 'Title for Another example')
 [Link to an external website](https://example.com)
 [Link to a header](#header-id)
