@@ -5,16 +5,17 @@ pub mod inline_code;
 pub mod emphasis;
 pub mod headings;
 pub mod horizontal_rule;
+pub mod links_images_footnotes;
 
 use regex::{Captures, Regex};
 
-pub fn replacer<F: Fn(Captures) -> String>(html: &mut String, regex: &str, handler: F) {
+pub fn replacer<F: FnMut(Captures) -> String>(html: &mut String, regex: &str, mut handler: F) {
   // Create the specified regular expression
   let re: Regex = Regex::new(regex).unwrap();
 
   // Ignore non-matches
   if !re.is_match(&html) {
-    return ()
+    return ();
   }
 
   // Parse MD to HTML using user defined handler
