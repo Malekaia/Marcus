@@ -1,9 +1,10 @@
-use crate::regex::RE;
-use crate::parser::replacer;
+use crate::core::re;
 use regex::{Captures, Regex};
 
+// List item type shorthand
 type ListItem<'a> = (usize, usize, &'a str, String);
 
+// Extract and remove MD syntax from list items
 fn parse_list_items((index, raw): (usize, &str)) -> ListItem {
   // Convert the line into a String
   let mut text: String = raw.to_string();
@@ -34,8 +35,10 @@ fn parse_list_items((index, raw): (usize, &str)) -> ListItem {
   (index, indent, format, format!("<li>{text}</li>"))
 }
 
+// Parse: Lists and task lists
 pub fn default(html: &mut String) {
-  replacer(html, RE::LIST_ITEM, | capture: Captures | {
+  let re_list_item: Regex = re::from(re::LIST_ITEM);
+  re::parse(html, re_list_item, | capture: Captures | {
     // Ignore empty lists
     let re_empty_list: Regex = Regex::new(r"([0-9]|\*|\-|\.)+").unwrap();
     if re_empty_list.replace_all(&capture[0], "").trim().len() < 1 {

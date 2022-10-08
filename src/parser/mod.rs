@@ -11,23 +11,4 @@ pub mod highlight;
 pub mod strikethrough;
 pub mod subscript;
 pub mod superscript;
-
-use regex::{Captures, Regex};
-
-// FIXME: predefine regex
-pub fn replacer<F: FnMut(Captures) -> String>(html: &mut String, regex: &str, mut handler: F) {
-  // Create the specified regular expression
-  let re: Regex = Regex::new(regex).unwrap();
-  // Ignore non-matches
-  if re.is_match(&html) {
-    // Insert full capture and parsed HTML into the result vector
-    let mut result: Vec<(String, String)> = vec![];
-    for capture in re.captures_iter(&html) {
-      result.push((capture[0].to_string(), handler(capture)));
-    }
-    // Replace the MD capture with the parsed HTML
-    for (capture, parsed) in result {
-      *html = html.replace(&capture, &parsed);
-    }
-  }
-}
+pub mod auto_link;

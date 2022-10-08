@@ -1,43 +1,40 @@
-use crate::regex::RE;
-use crate::parser::replacer;
-use regex::Captures;
+use crate::core::re;
+use regex::{Captures, Regex};
 
-// Get the capture index for the emphasis ("*" = 1, "_" = 2)
-fn capture_index(value: &str) -> usize {
-  if value.starts_with("*") {
-    1
-  } else if value.starts_with("_") {
-    2
-  } else {
-    panic!("Marcus: ParseError: Emphasis match doesn't start with \"*\" or \"_\".")
+// Get the capture index for the emphasis ('*' = 1, '_' = 2, otherwise panic)
+fn index_of_capture(value: &str) -> usize {
+  match value.chars().nth(0).unwrap() {
+    '*' => 1,
+    '_' => 2,
+     _  => panic!("Marcus: ParseError: Emphasis match doesn't start with \"*\" or \"_\".")
   }
 }
 
 // Ignore emphasis matches with no text
 fn capture_or_html(text: &str, capture: &str, html: String) -> String {
-  if text.len() < 1 {
-    capture.to_string()
-  } else {
-    html
-  }
+  if text.len() < 1 { capture.to_string() } else { html }
 }
 
+// Parse: Emphasis
 pub fn default(html: &mut String) {
-  // Bold Italic Emphasis
-  replacer(html, RE::EMPHASIS_BOLD_ITALIC, | capture: Captures | {
-    let text: &str = capture[capture_index(&capture[0])].trim();
+  // Parse: Bold Italic Emphasis
+  let re_emphasis_bold_italic: Regex = re::from(re::EMPHASIS_BOLD_ITALIC);
+  re::parse(html, re_emphasis_bold_italic, | capture: Captures | {
+    let text: &str = capture[index_of_capture(&capture[0])].trim();
     capture_or_html(&text, &capture[0], format!("<b><i>{}</i></b>", text))
   });
 
-  // Bold Emphasis
-  replacer(html, RE::EMPHASIS_BOLD, | capture: Captures | {
-    let text: &str = capture[capture_index(&capture[0])].trim();
+  // Parse: Bold Emphasis
+  let re_emphasis_bold: Regex = re::from(re::EMPHASIS_BOLD);
+  re::parse(html, re_emphasis_bold, | capture: Captures | {
+    let text: &str = capture[index_of_capture(&capture[0])].trim();
     capture_or_html(&text, &capture[0], format!("<b>{}</b>", text))
   });
 
-  // Italic Emphasis
-  replacer(html, RE::EMPHASIS_ITALIC, | capture: Captures | {
-    let text: &str = capture[capture_index(&capture[0])].trim();
+  // Parse: Italic Emphasis
+  let re_emphasis_italic: Regex = re::from(re::EMPHASIS_ITALIC);
+  re::parse(html, re_emphasis_italic, | capture: Captures | {
+    let text: &str = capture[index_of_capture(&capture[0])].trim();
     capture_or_html(&text, &capture[0], format!("<i>{}</i>", text))
   });
 }

@@ -1,4 +1,4 @@
-use crate::regex::RE;
+use crate::core::re;
 use regex::{Captures, Regex};
 
 #[derive(Debug)]
@@ -8,17 +8,18 @@ pub struct Blockquote {
   pub cite: String
 }
 
+// Parse: Blockquotes
 pub fn default(html: &mut String) {
   // Create the regular expression
-  let re: Regex = Regex::new(RE::BLOCKQUOTE).unwrap();
+  let regex: Regex = re::from(re::BLOCKQUOTE);
 
   // Ignore non-matches
-  if !re.is_match(&html) {
+  if !regex.is_match(&html) {
     return ();
   }
 
   // Extract and parse MD blockquotes with HTML
-  re.captures_iter(&html.clone()).for_each(| capture: Captures | {
+  regex.captures_iter(&html.clone()).for_each(| capture: Captures | {
     // new HTML string, Blockquote HTML template, previous size
     let (mut prev_size, mut result): (usize, String) = (1, String::new());
 
