@@ -6,7 +6,7 @@ pub mod emphasis;
 pub mod headings;
 pub mod horizontal_rule;
 pub mod links_images_footnotes;
-pub mod lists;
+pub mod lists_and_task_lists;
 
 use regex::{Captures, Regex};
 

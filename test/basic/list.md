@@ -4,12 +4,12 @@
   1. Item 3a
   2. Item 3b
   3. Item 3b
-    1. Item 3a
-    2. Item 3b
-    3. Item 3b
-      * Item 3a
-      * Item 3b
-      * Item 3b
+    1. Item 3ba
+    2. Item 3bb
+    3. Item 3bc
+      * Item 3bca
+      * Item 3bcb
+      * Item 3bcb
 
 Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit
 
@@ -26,6 +26,7 @@ Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adi
 
 - List item 1
 - List item 2
+-
 - List item with emoji ✨
 
 Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit

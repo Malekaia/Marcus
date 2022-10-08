@@ -18,9 +18,8 @@ pub mod RE {
   pub const IMAGE: &str = r"!\[(.*?)\]\((.*?)\)";
   pub const LINK_WITH_TITLE: &str = r#"\[(.*?)\]\((.*?)('|"|\()(.*?)('|"|\))\)"#;
   pub const LINK: &str = r"\[(.*?)\]\((.*?)\)";
-
-  pub const LIST_ITEM: &str = r"((^|[ \t]{0,})([0-9]\.|\*|\-)(.*?)\n)+";
-  pub const TASK_LIST: &str = r"(^|\n)[\s]{0,}\-[\s]{0,}\[([\s]{1,}|x)\]"; // CATEGORY: CUSTOM
+  pub const LIST_ITEM: &str = r"(^|\n)((\s{0,})([0-9]{1,}\.|\-|\*)(.*?)\n)+";
+  // Paragraphs are parsed last after everything else
   pub const PARAGRAPH: &str = r"(^|\n+)([A-Za-z0-9].*?)(\n|$)"; // Order: last item
 
   /*
@@ -49,4 +48,7 @@ pub mod RE {
   pub const SUBSCRIPT: &str = r"~(.*?)~";
   pub const SUPERSCRIPT: &str = r"\^(.*?)\^";
   pub const TABLE: &str = r"(\|.*?\|(\n|$))+";
+  /* Task list checkboxes are parsed with the list item module
+   * pub const TASK_LIST_IDENTIFIER: &str = r"^(\[[\s]{0,}[xX]{1}[\s]{0,}\]|\[[\s]{0,}\])\s{0,}";
+   */
 }
