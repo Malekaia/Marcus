@@ -1,16 +1,20 @@
 pub mod escape;
 pub mod comments;
 pub mod blockquotes;
-pub mod inline_code;
+pub mod code;
 pub mod emphasis;
 pub mod headings;
 pub mod horizontal_rule;
 pub mod links_images_footnotes;
 pub mod lists_and_task_lists;
+pub mod highlight;
+pub mod strikethrough;
+pub mod subscript;
+pub mod superscript;
 
 use regex::{Captures, Regex};
 
-// TODO: predefine regex
+// FIXME: predefine regex
 pub fn replacer<F: FnMut(Captures) -> String>(html: &mut String, regex: &str, mut handler: F) {
   // Create the specified regular expression
   let re: Regex = Regex::new(regex).unwrap();

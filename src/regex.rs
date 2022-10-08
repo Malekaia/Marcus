@@ -36,7 +36,7 @@ pub mod RE {
    */
   pub const DEFINITION_LIST: &str = r"(^|\n)([A-Za-z0-9].*?)\n([\s]{0,}:(.*?)\n)+";
   pub const EMOJI: &str = r"([\s]{1,}:[A-Za-z-_]+:[\s]{1,})";
-  pub const FENCED_CODE_BLOCK: &str = r"```(\n|.)*?```";
+  pub const FENCED_CODE_BLOCK: &str = r"```(.*?)\n((\n|.)*?)```";
   /* Footnote definitions are automatically caught and parsed by
    * the "LINK_DEFINE_WITH_TITLE" and "LINK_DEFINE" regular expressions
    * pub const FOOTNOTE_DEFINITION: &str = r"\[\^([0-9]{1,})\][\s]{0,}:[\s]{0,}(.*?)(\n|$)";
