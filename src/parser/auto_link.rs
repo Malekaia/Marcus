@@ -1,5 +1,4 @@
-use crate::core::escape;
-use crate::core::re;
+use crate::core::{escape, re};
 use regex::{Captures, Regex};
 
 pub fn default(html: &mut String) {
