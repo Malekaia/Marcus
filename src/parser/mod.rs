@@ -1,6 +1,7 @@
 pub mod inline_ignore;
 pub mod escape;
 pub mod comments;
+pub mod emojis;
 pub mod blockquotes;
 pub mod code;
 pub mod emphasis;

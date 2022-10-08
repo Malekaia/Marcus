@@ -23,6 +23,7 @@ fn main() {
     let ignore: HashMap<i32, String> = parser::inline_ignore::hide(&mut html);
     parser::escape::default(&mut html);
     parser::comments::default(&mut html, options.allow_comments);
+    parser::emojis::default(&mut html);
     parser::blockquotes::default(&mut html);
     parser::code::default(&mut html);
     parser::emphasis::default(&mut html);

@@ -1,5 +1,3 @@
-<!-- https://www.markdownguide.org/extended-syntax/#emoji -->
+<!-- Comment which will be optionally removed :winking_face: -->
 
-<!-- https://www.markdownguide.org/extended-syntax/#copying-and-pasting-emoji -->
-
-That is so funny! :joy:
+This is a wink emoji: :winking_face:, and this is a laughing emoji: :face_with_tears_of_joy:.
