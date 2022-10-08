@@ -1,14 +1,11 @@
-// TODO: convert program to library
 mod core;
 mod parser;
 use crate::core::fileio;
 
-// FIXME: move to external mod
 pub struct Options {
   pub allow_comments: bool
 }
 
-// TODO: convert to library function
 fn main() {
   // Create options struct
   let options: Options = Options {
@@ -22,7 +19,7 @@ fn main() {
 
     // Call parser methods
     parser::escape::default(&mut html);
-    parser::comments::default(&mut html, options.allow_comments); // FIXME: Provide access to all modules
+    parser::comments::default(&mut html, options.allow_comments);
     parser::blockquotes::default(&mut html);
     parser::code::default(&mut html);
     parser::emphasis::default(&mut html);
