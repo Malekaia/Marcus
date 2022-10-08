@@ -1,3 +1,4 @@
+pub mod inline_ignore;
 pub mod escape;
 pub mod comments;
 pub mod blockquotes;

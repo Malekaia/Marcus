@@ -1,7 +1,9 @@
 mod core;
 mod parser;
 use crate::core::fileio;
+use std::collections::HashMap;
 
+#[derive(Debug)]
 pub struct Options {
   pub allow_comments: bool
 }
@@ -18,6 +20,7 @@ fn main() {
     let mut html: String = fileio::read_file(&file_path);
 
     // Call parser methods
+    let ignore: HashMap<i32, String> = parser::inline_ignore::hide(&mut html);
     parser::escape::default(&mut html);
     parser::comments::default(&mut html, options.allow_comments);
     parser::blockquotes::default(&mut html);
@@ -32,7 +35,7 @@ fn main() {
     parser::subscript::default(&mut html);
     parser::superscript::default(&mut html);
     parser::auto_link::default(&mut html);
-
+    parser::inline_ignore::show(&mut html, ignore);
     // Write to the test file
     fileio::write_file(&file_path.replace(".md", ".html"), html);
   }
