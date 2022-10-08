@@ -1,11 +1,11 @@
-use crate::regex::RE;
-use crate::parser::replacer;
-use html_escape;
-use regex::Captures;
+use crate::core::re;
+use crate::core::escape;
+use regex::{Captures, Regex};
 
 pub fn default(html: &mut String) {
-  // HTML encode the escaped character (or return the raw character if not required)
-  replacer(html, RE::ESCAPE, | capture: Captures |
-    html_escape::encode_safe(&capture[1]).to_string()
+  // Parse: HTML escapes
+  let re_escape: Regex = re::from(re::ESCAPE);
+  re::parse(html, re_escape, | capture: Captures |
+    escape::ascii(&capture[1])
   );
 }
