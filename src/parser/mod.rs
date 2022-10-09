@@ -14,3 +14,4 @@ pub mod strikethrough;
 pub mod subscript;
 pub mod superscript;
 pub mod auto_link;
+pub mod definition_list;

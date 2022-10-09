@@ -36,6 +36,7 @@ fn main() {
     parser::subscript::default(&mut html);
     parser::superscript::default(&mut html);
     parser::auto_link::default(&mut html);
+    parser::definition_list::default(&mut html);
     parser::inline_ignore::show(&mut html, ignore);
     // Write to the test file
     fileio::write_file(&file_path.replace(".md", ".html"), html);

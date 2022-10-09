@@ -50,8 +50,7 @@ pub const AUTO_LINK_EMAIL: &str = r#"<((?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0
 pub const INLINE_SCRIPT: &str = r"<script.*?>(\n|.)*?</script>";
 pub const INLINE_STYLE: &str = r"<style.*?>(\n|.)*?</style>";
 /* EXTENDED */
-#[allow(unused)]
-pub const DEFINITION_LIST: &str = r"(^|\n)([A-Za-z0-9].*?)\n([\s]{0,}:(.*?)\n)+";
+pub const DEFINITION_LIST: &str = r"(^|\n+)([a-zA-Z0-9\s].*?\n+(:.*?\n+)+)+";
 pub const EMOJI: &str = r":([a-zA-Z_]+):";
 pub const FENCED_CODE_BLOCK: &str = r"```(.*?)\n((\n|.)*?)```";
 /* Footnote definitions are automatically caught and parsed by
