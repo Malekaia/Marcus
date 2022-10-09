@@ -8,7 +8,7 @@ pub fn default(html: &mut String) {
     // Get the language type and source code
     let (language, code): (&str, &str) = (capture[1].trim(), capture[2].trim());
     // Return the parsed HTML
-    format!("<pre{}>\n{code}\n</pre>", if language.len() > 0 { " lang=\"{language}\"" } else { "" })
+    format!("<pre{}>\n{code}\n</pre>", if language.len() > 0 { format!(" lang=\"{language}\"") } else { String::new() })
   });
 
   // Parse: Inline code
