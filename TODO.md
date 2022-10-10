@@ -1,7 +1,6 @@
 ## TODO:
-
-- [ ] Convert program to library
-- [ ] Move `Options` struct to mod for external use
-- [ ] Provide access to `Options` struct (for parsers that require it)
+- [x] Remove `Options` struct
+- [x] Only remove/hide triple dash comments ([see](https://stackoverflow.com/a/4829998/10415695))
+- [x] Surround all lines of text and lines of text with preceding inline elements with paragraphs
 - [ ] Reimplement blockquote parser
-- [ ] Reduce use of `.to_string()`, `.to_owned()` & `.clone()`
+- [ ] Convert program to library
