@@ -16,3 +16,5 @@ pub mod superscript;
 pub mod auto_link;
 pub mod definition_list;
 pub mod table;
+pub mod paragraphs;
+pub mod cleanup;
