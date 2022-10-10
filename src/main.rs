@@ -5,13 +5,15 @@ use std::collections::HashMap;
 
 #[derive(Debug)]
 pub struct Options {
-  pub allow_comments: bool
+  pub allow_comments: bool,
+  pub style_output: bool
 }
 
 fn main() {
   // Create options struct
   let options: Options = Options {
-    allow_comments: false
+    allow_comments: false,
+    style_output: true
   };
 
   // Glob the MD test files
@@ -37,6 +39,7 @@ fn main() {
     parser::superscript::default(&mut html);
     parser::auto_link::default(&mut html);
     parser::definition_list::default(&mut html);
+    parser::table::default(&mut html, options.style_output);
     parser::inline_ignore::show(&mut html, ignore);
     // Write to the test file
     fileio::write_file(&file_path.replace(".md", ".html"), html);

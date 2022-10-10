@@ -1,25 +1,210 @@
-| Left columns  | Right columns | Optional column |
-| ------------- |:-------------:| --------------- |
-| left col 1    | right col 1   |
-| left col 2    |               | Optional value  |
-|               | right col 3   |
-| ------------- |:-------------:| --------------- |
-| Left columns  | Right columns |                 |
+<p><b>0, 0, 0</b>: no header, no body, no footer => Ignore</p>
 
-This is not a table.
 
-| left col 2    |               | Optional value  |
-|               | right col 3   |
-| ------------- |:-------------:| --------------- |
 
-This is not a table.
+<p><b>1, 0, 0</b>: header, no body, no footer => Body</p>
 
-| Left columns  | Right columns | Optional column |
-| ------------- |:-------------:| --------------- |
-| left col 1    | right col 1   |
-| left col 2    |               | Optional value  |
-|               | right col 3   |
-| ------------- |:-------------:| --------------- |
-| Left columns  | Right columns |                 |
 
-This is also not a table.
+<table style="border: 1px solid black; border-collapse: collapse;">
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid black; border-collapse: collapse;">Left columns</td>
+      <td style="border: 1px solid black; border-collapse: collapse;">Right columns</td>
+      <td style="border: 1px solid black; border-collapse: collapse;">Optional column</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; border-collapse: collapse;">left col 1</td>
+      <td style="border: 1px solid black; border-collapse: collapse;">right col 1</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; border-collapse: collapse;">left col 2</td>
+      <td style="border: 1px solid black; border-collapse: collapse;"></td>
+      <td style="border: 1px solid black; border-collapse: collapse;">Optional value</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; border-collapse: collapse;"></td>
+      <td style="border: 1px solid black; border-collapse: collapse;">right col 3</td>
+    </tr>
+  </tbody>
+  <tfoot>
+  </tfoot>
+</table>
+
+<p><b>1, 1, 0</b>: header, body, no footer => Header and body</p>
+
+
+<table style="border: 1px solid black; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid black; border-collapse: collapse;">Left columns</th>
+      <th style="border: 1px solid black; border-collapse: collapse;">Right columns</th>
+      <th style="border: 1px solid black; border-collapse: collapse;">Optional column</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid black; border-collapse: collapse;">left col 1</td>
+      <td style="border: 1px solid black; border-collapse: collapse;">right col 1</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; border-collapse: collapse;">left col 2</td>
+      <td style="border: 1px solid black; border-collapse: collapse;"></td>
+      <td style="border: 1px solid black; border-collapse: collapse;">Optional value</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; border-collapse: collapse;"></td>
+      <td style="border: 1px solid black; border-collapse: collapse;">right col 3</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; border-collapse: collapse;">Left columns</td>
+      <td style="border: 1px solid black; border-collapse: collapse;">Right columns</td>
+      <td style="border: 1px solid black; border-collapse: collapse;"></td>
+    </tr>
+  </tbody>
+  <tfoot>
+  </tfoot>
+</table>
+
+<p><b>1, 1, 1</b>: header, body, footer => Header, body and footer</p>
+
+
+<table style="border: 1px solid black; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid black; border-collapse: collapse;">Left columns</th>
+      <th style="border: 1px solid black; border-collapse: collapse;">Right columns</th>
+      <th style="border: 1px solid black; border-collapse: collapse;">Optional column</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid black; border-collapse: collapse;">left col 1</td>
+      <td style="border: 1px solid black; border-collapse: collapse;">right col 1</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; border-collapse: collapse;">left col 2</td>
+      <td style="border: 1px solid black; border-collapse: collapse;"></td>
+      <td style="border: 1px solid black; border-collapse: collapse;">Optional value</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; border-collapse: collapse;"></td>
+      <td style="border: 1px solid black; border-collapse: collapse;">right col 3</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th style="border: 1px solid black; border-collapse: collapse;">Left columns</th>
+      <th style="border: 1px solid black; border-collapse: collapse;">Right columns</th>
+      <th style="border: 1px solid black; border-collapse: collapse;"></th>
+    </tr>
+  </tfoot>
+</table>
+
+<p><b>0, 0, 1</b>: no header, no body, footer => Body</p>
+
+
+<table style="border: 1px solid black; border-collapse: collapse;">
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid black; border-collapse: collapse;"></td>
+      <td style="border: 1px solid black; border-collapse: collapse;">right col 3</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; border-collapse: collapse;">Left columns</td>
+      <td style="border: 1px solid black; border-collapse: collapse;">Right columns</td>
+      <td style="border: 1px solid black; border-collapse: collapse;"></td>
+    </tr>
+  </tbody>
+  <tfoot>
+  </tfoot>
+</table>
+
+<p><b>0, 1, 1</b>: no header, body, footer => Body and footer</p>
+
+
+<table style="border: 1px solid black; border-collapse: collapse;">
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid black; border-collapse: collapse;">Left columns</td>
+      <td style="border: 1px solid black; border-collapse: collapse;">Right columns</td>
+      <td style="border: 1px solid black; border-collapse: collapse;">Optional column</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; border-collapse: collapse;">left col 1</td>
+      <td style="border: 1px solid black; border-collapse: collapse;">right col 1</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; border-collapse: collapse;">left col 2</td>
+      <td style="border: 1px solid black; border-collapse: collapse;"></td>
+      <td style="border: 1px solid black; border-collapse: collapse;">Optional value</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; border-collapse: collapse;"></td>
+      <td style="border: 1px solid black; border-collapse: collapse;">right col 3</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th style="border: 1px solid black; border-collapse: collapse;">Left columns</th>
+      <th style="border: 1px solid black; border-collapse: collapse;">Right columns</th>
+      <th style="border: 1px solid black; border-collapse: collapse;"></th>
+    </tr>
+  </tfoot>
+</table>
+
+<p><b>1, 0, 1</b>: header, no body, footer => Header and body</p>
+
+
+<table style="border: 1px solid black; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid black; border-collapse: collapse;">left col 2</th>
+      <th style="border: 1px solid black; border-collapse: collapse;"></th>
+      <th style="border: 1px solid black; border-collapse: collapse;">Optional value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid black; border-collapse: collapse;"></td>
+      <td style="border: 1px solid black; border-collapse: collapse;">right col 3</td>
+    </tr>
+  </tbody>
+  <tfoot>
+  </tfoot>
+</table>
+
+<p><b>0, 1, 0</b>: no header, body, no footer => Body</p>
+
+
+<table style="border: 1px solid black; border-collapse: collapse;">
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid black; border-collapse: collapse;">left col 2</td>
+      <td style="border: 1px solid black; border-collapse: collapse;"></td>
+      <td style="border: 1px solid black; border-collapse: collapse;">Optional value</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; border-collapse: collapse;"></td>
+      <td style="border: 1px solid black; border-collapse: collapse;">right col 3</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; border-collapse: collapse;">left col 2</td>
+      <td style="border: 1px solid black; border-collapse: collapse;"></td>
+      <td style="border: 1px solid black; border-collapse: collapse;">Optional value</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; border-collapse: collapse;"></td>
+      <td style="border: 1px solid black; border-collapse: collapse;">right col 3</td>
+    </tr>
+  </tbody>
+  <tfoot>
+  </tfoot>
+</table>

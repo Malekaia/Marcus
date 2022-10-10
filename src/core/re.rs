@@ -64,8 +64,7 @@ pub const HIGHLIGHT: &str = r"==(.*?)==";
 pub const STRIKETHROUGH: &str = r"~~(.*?)~~";
 pub const SUBSCRIPT: &str = r"~(.*?)~";
 pub const SUPERSCRIPT: &str = r"\^(.*?)\^";
-#[allow(unused)]
-pub const TABLE: &str = r"(\|.*?\|(\n|$))+";
+pub const TABLE: &str = r"((\|[\s]{0,}.*?[\s]{0,}\|)+(\n|$))+";
 /* Task list checkboxes are parsed with the list item module
  * pub const TASK_LIST_IDENTIFIER: &str = r"^(\[[\s]{0,}[xX]{1}[\s]{0,}\]|\[[\s]{0,}\])\s{0,}";
  */
