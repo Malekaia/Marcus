@@ -80,3 +80,10 @@
 |               | right col 3   |
 | ------------- |:-------------:| --------------- |
 | ------------- |:-------------:| --------------- |
+
+<style type="text/css">
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+</style>
