@@ -7,7 +7,7 @@ license = "MIT"
 readme = "README.md"
 homepage = "https://github.com/Malekaia/Marcus"
 repository = "https://github.com/Malekaia/Marcus"
-documentation = "https://github.com/Malekaia/Marcus"
+documentation = "https://github.com/Malekaia/Marcus-Docs"
 
 [profile.dev]
 opt-level = 1
