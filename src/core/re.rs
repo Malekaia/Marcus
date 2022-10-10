@@ -23,7 +23,7 @@ pub fn parse<F: FnMut(Captures) -> String>(html: &mut String, regex: Regex, mut 
 // Order: first (above all else)
 pub const ESCAPE: &str = r"\\(.{1})";
 // Optional
-pub const COMMENTS: &str = r"<!--(.*?)-->";
+pub const COMMENTS: &str = r"<!---((.|\n+)*?)-->";
 pub const BLOCKQUOTE: &str = r"(^|\n+)([>]{1,}.*?(\n)+)+";
 pub const INLINE_CODE: &str = r"`{1}([^`]+)`{1}";
 // Order: before bold emphasis
@@ -40,9 +40,8 @@ pub const IMAGE: &str = r"!\[(.*?)\]\((.*?)\)";
 pub const LINK_WITH_TITLE: &str = r#"\[(.*?)\]\((.*?)('|"|\()(.*?)('|"|\))\)"#;
 pub const LINK: &str = r"\[(.*?)\]\((.*?)\)";
 pub const LIST_ITEM: &str = r"(^|\n)((\s{0,})([0-9]{1,}\.|\-|\*)(.*?)\n)+";
-// Paragraphs are parsed last after everything else
-#[allow(unused)]
-pub const PARAGRAPH: &str = r"(^|\n+)([A-Za-z0-9].*?)(\n|$)"; // Order: last item
+// Parse explicit paragraphs last
+pub const PARAGRAPH: &str = r"^(<(b|big|i|small|tt|abbr|acronym|cite|code|dfn|em|kbd|strong|samp|var|a|bdo|br|img|map|object|q|script|span|sub|sup|button|input|label|select|textarea)|[^<])";
 /* CUSTOM */
 pub const AUTO_LINK: &str = r"<(http[s]{0,1}://.*?)/>";
 // Email Validation Source: https://emailregex.com/
