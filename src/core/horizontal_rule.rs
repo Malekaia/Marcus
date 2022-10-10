@@ -1,4 +1,4 @@
-use crate::core::re;
+use crate::helpers::re;
 use regex::Captures;
 
 // Determine if a line is a horizontal rule

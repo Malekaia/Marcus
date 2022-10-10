@@ -1,4 +1,4 @@
-use crate::core::re;
+use crate::helpers::re;
 use regex::Captures;
 
 // Table type shorthands to improve visual grepping of table components

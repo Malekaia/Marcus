@@ -1,4 +1,4 @@
-use crate::core::{emoji, re};
+use crate::helpers::{emoji, re};
 use regex::Captures;
 
 // Parse: MD Emojis

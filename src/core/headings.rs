@@ -1,4 +1,4 @@
-use crate::core::re;
+use crate::helpers::re;
 use regex::Captures;
 
 pub fn default(html: &mut String) {

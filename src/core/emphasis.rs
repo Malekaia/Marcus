@@ -1,4 +1,4 @@
-use crate::core::re;
+use crate::helpers::re;
 use regex::Captures;
 
 // Get the capture index for the emphasis ('*' = 1, '_' = 2, otherwise panic)
