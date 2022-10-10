@@ -40,7 +40,7 @@ pub const IMAGE: &str = r"!\[(.*?)\]\((.*?)\)";
 pub const LINK_WITH_TITLE: &str = r#"\[(.*?)\]\((.*?)('|"|\()(.*?)('|"|\))\)"#;
 pub const LINK: &str = r"\[(.*?)\]\((.*?)\)";
 pub const LIST_ITEM: &str = r"(^|\n)((\s{0,})([0-9]{1,}\.|\-|\*)(.*?)\n)+";
-// Parse explicit paragraphs last
+// Parse paragraphs last
 pub const PARAGRAPH: &str = r"^(<(b|big|i|small|tt|abbr|acronym|cite|code|dfn|em|kbd|strong|samp|var|a|bdo|br|img|map|object|q|script|span|sub|sup|button|input|label|select|textarea)|[^<])";
 /* CUSTOM */
 pub const AUTO_LINK: &str = r"<(http[s]{0,1}://.*?)/>";
