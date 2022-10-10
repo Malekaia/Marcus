@@ -3,7 +3,7 @@ use regex::{Captures, Regex};
 
 // Determine if a line is a horizontal rule
 fn is_rule(line: &String, value: &str) -> bool {
-  line.starts_with(value) && line.matches(value).count() >= 3 && line.replace(value, "").len() == 0
+  line.starts_with(value) && line.matches(value).count() >= 3 && line.replace(value, "").is_empty()
 }
 
 pub fn default(html: &mut String) {

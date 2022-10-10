@@ -41,7 +41,7 @@ pub fn default(html: &mut String) {
   re::parse(html, re_list_item, | capture: Captures | {
     // Ignore empty lists
     let re_empty_list: Regex = Regex::new(r"([0-9]|\*|\-|\.)+").unwrap();
-    if re_empty_list.replace_all(&capture[0], "").trim().len() < 1 {
+    if re_empty_list.replace_all(&capture[0], "").trim().is_empty() {
       return capture[0].to_string();
     }
 
@@ -86,7 +86,7 @@ pub fn default(html: &mut String) {
     }
 
     // Close all unclosed open list using whitespace and format indicators from the `open_lists` vector
-    while open_lists.len() > 0 {
+    while !open_lists.is_empty() {
       let (whitespace, format): (String, &str) = open_lists.pop().unwrap();
       result.push_str(&format!("{whitespace}</{format}>\n"));
     }

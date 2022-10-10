@@ -11,15 +11,15 @@ pub struct Blockquote {
 // Parse: Blockquotes
 pub fn default(html: &mut String) {
   // Create the regular expression
-  let regex: Regex = re::from(re::BLOCKQUOTE);
+  let re_blockquote: Regex = re::from(re::BLOCKQUOTE);
 
   // Ignore non-matches
-  if !regex.is_match(&html) {
+  if !re_blockquote.is_match(&html) {
     return ();
   }
 
   // Extract and parse MD blockquotes with HTML
-  regex.captures_iter(&html.clone()).for_each(| capture: Captures | {
+  re_blockquote.captures_iter(&html.clone()).for_each(| capture: Captures | {
     // new HTML string, Blockquote HTML template, previous size
     let (mut prev_size, mut result): (usize, String) = (1, String::new());
 
@@ -58,7 +58,7 @@ pub fn default(html: &mut String) {
     // Convert blockquote structs to HTML
     .enumerate().for_each(| (i, blockquote): (usize, Blockquote) | {
       // Get the cite text to replace and it's replacement string
-      let (cite_capture, cite_replace): (&str, &str) = if blockquote.cite.len() == 0 {
+      let (cite_capture, cite_replace): (&str, &str) = if blockquote.cite.is_empty() {
         ("<cite>%cite</cite>", "")
       } else {
         ("%cite", &blockquote.cite)

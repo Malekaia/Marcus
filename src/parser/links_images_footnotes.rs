@@ -85,7 +85,7 @@ pub fn default(html: &mut String) {
     let (src, alt): (String, &str) = (capture[2].trim().to_string(), &capture[1].trim());
     let defined: String = format!("<img src=\"{}\" title=\"{}\" alt=\"{}\" />", &src, &capture[4].trim(), alt);
     html_from_link(&links, src, defined, | link: &Link | -> String {
-      if link.title.len() > 0 {
+      if !link.title.is_empty() {
         format!("<img src=\"{}\" title=\"{}\" alt=\"{}\" />", link.href, link.title, alt)
       } else {
         format!("<img src=\"{}\" alt=\"{}\" />", link.href, alt)
@@ -100,7 +100,7 @@ pub fn default(html: &mut String) {
     let (src, alt): (String, &str) = (capture[2].trim().to_string(), &capture[1].trim());
     let defined: String = format!("<img src=\"{src}\" alt=\"{alt}\" />", src = src, alt = alt);
     html_from_link(&links, src, defined, | link: &Link | -> String {
-      if link.title.len() > 0 {
+      if !link.title.is_empty() {
         format!("<img src=\"{src}\" alt=\"{alt}\" title=\"{title}\" />", src = link.href, alt = alt, title = link.title)
       } else {
         format!("<img src=\"{src}\" alt=\"{alt}\" />", src = link.href, alt = alt)
@@ -117,7 +117,7 @@ pub fn default(html: &mut String) {
     let (href, text): (String, &str) = (capture[2].trim().to_string(), &capture[1].trim());
     let defined: String = format!("<a href=\"{}\" title=\"{}\">{}</a>", &href, &capture[4].trim(), text);
     html_from_link(&links, href, defined, | link: &Link | -> String {
-      if link.title.len() > 0 {
+      if !link.title.is_empty() {
         format!("<a href=\"{}\" title=\"{}\">{}</a>", link.href, link.title, text)
       } else {
         format!("<a href=\"{}\">{}</a>", link.href, text)
@@ -132,7 +132,7 @@ pub fn default(html: &mut String) {
     let (href, text): (String, &str) = (capture[2].trim().to_string(), &capture[1].trim());
     let defined: String = format!("<a href=\"{href}\">{text}</a>", href = href, text = text);
     html_from_link(&links, href, defined, | link: &Link | -> String {
-      if link.title.len() > 0 {
+      if !link.title.is_empty() {
         format!("<a href=\"{href}\" title=\"{title}\">{text}</a>", href = link.href, text = text, title = link.title)
       } else {
         format!("<a href=\"{href}\">{text}</a>", href = link.href, text = text)

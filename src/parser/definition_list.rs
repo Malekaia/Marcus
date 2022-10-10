@@ -10,7 +10,7 @@ pub fn default(html: &mut String) {
   re::parse(html, re_definition_list, | capture: Captures | {
     let mut result: String = format!("{}<dl>\n", &capture[1]);
     for line in capture[0].lines() {
-      if line.trim().len() < 1 {
+      if line.trim().is_empty() {
         continue;
       } else if re_dd_start.is_match(line) {
         result.push_str(&format!("  <dd>{}</dd>\n", &re_dd_start.captures(line).unwrap()[1].trim()));
