@@ -1,1 +1,0 @@
-This is some inline `code` which will be parsed into a HTML `\<code \/\>` element.
