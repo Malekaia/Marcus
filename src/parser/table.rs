@@ -9,18 +9,14 @@ type Thead = Table;
 type Tbody = Table;
 type Tfoot = Table;
 
-// Default table style
-const STYLE: &str = " style=\"border: 1px solid black; border-collapse: collapse;\"";
-
 // Convert a table section to a HTML string
-fn section_to_html(section: Table, name: &str, style_output: bool) -> String {
+fn section_to_html(section: Table, name: &str) -> String {
   let mut html: String = format!("  <t{name}>\n");
   for row in section {
     html.push_str("    <tr>\n");
     for cell in row {
       let format: &str = if name == "head" || name == "foot" { "th" } else { "td" };
-      let style: &str = if style_output == true { &STYLE } else { "" };
-      html.push_str(&format!("      <{format}{}>{}</{format}>\n", style, cell));
+      html.push_str(&format!("      <{format}>{}</{format}>\n", cell));
     }
     html.push_str("    </tr>\n");
   }
@@ -29,8 +25,7 @@ fn section_to_html(section: Table, name: &str, style_output: bool) -> String {
 }
 
 // Parse: Tables
-#[allow(unused)]
-pub fn default(html: &mut String, style_output: bool) {
+pub fn default(html: &mut String) {
   let re_table: Regex = re::from(re::TABLE);
   re::parse(html, re_table, | capture: Captures | {
     // Split the table capture into lines
@@ -93,7 +88,8 @@ pub fn default(html: &mut String, style_output: bool) {
     }
 
     // Determine output structure for table
-    let (mut header, mut body, mut footer): (Thead, Tbody, Tfoot) = (vec![], vec![], vec![]);
+    let mut body: Tbody;
+    let (mut header, mut footer): (Thead, Tfoot) = (vec![], vec![]);
     // 0, 0, 0 (no header, no body, no footer) => Ignore
     if table_header.is_empty() && table_body.is_empty() && table_footer.is_empty() {
       return String::new()
@@ -140,12 +136,11 @@ pub fn default(html: &mut String, style_output: bool) {
     }
 
     // Return the formatted HTML table
-    let style: &str = if style_output == true { &STYLE } else { "" };
     format!(
-      "\n<table{style}>\n{}{}{}</table>\n",
-      section_to_html(header, "head", style_output),
-      section_to_html(body, "body", style_output),
-      section_to_html(footer, "foot", style_output)
+      "\n<table>\n{}{}{}</table>\n",
+      section_to_html(header, "head"),
+      section_to_html(body, "body"),
+      section_to_html(footer, "foot")
     )
   });
 }
