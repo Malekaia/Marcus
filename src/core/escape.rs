@@ -1,4 +1,4 @@
-// Source: https://www.freeformatter.com/html-entities.html
+// Convert characters into HTML entities (source: https://www.freeformatter.com/html-entities.html)
 pub fn ascii(email: &str) -> String {
   let mut result: String = String::new();
   for letter in email.split("") {
