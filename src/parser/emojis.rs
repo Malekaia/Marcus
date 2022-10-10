@@ -1,10 +1,9 @@
 use crate::core::{emoji, re};
-use regex::{Captures, Regex};
+use regex::Captures;
 
+// Parse: MD Emojis
 pub fn default(html: &mut String) {
-  // Parse: MD Emojis
-  let re_emoji: Regex = re::from(re::EMOJI);
-  re::parse(html, re_emoji, | capture: Captures | {
+  re::parse(html, re::from(re::EMOJI), | capture: Captures | {
     for [text, name] in emoji::LIST {
       if name == &capture[1] {
         return text.to_string();

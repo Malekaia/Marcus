@@ -1,5 +1,5 @@
 use crate::core::{id, re};
-use regex::{Captures, Regex};
+use regex::Captures;
 use std::collections::HashMap;
 
 pub fn hide(html: &mut String) -> HashMap<i32, String> {
@@ -7,8 +7,7 @@ pub fn hide(html: &mut String) -> HashMap<i32, String> {
   let mut ignore: HashMap<i32, String> = HashMap::new();
 
   // Parse: Inline ignore script
-  let re_inline_script: Regex = re::from(re::INLINE_SCRIPT);
-  re::parse(html, re_inline_script, | capture: Captures | {
+  re::parse(html, re::from(re::INLINE_SCRIPT), | capture: Captures | {
     // Create a unique ID
     let mut id: i32 = id::random_10_digit();
     while ignore.contains_key(&id) {
@@ -22,8 +21,7 @@ pub fn hide(html: &mut String) -> HashMap<i32, String> {
   });
 
   // Parse: Inline ignore style
-  let re_inline_style: Regex = re::from(re::INLINE_STYLE);
-  re::parse(html, re_inline_style, | capture: Captures | {
+  re::parse(html, re::from(re::INLINE_STYLE), | capture: Captures | {
     // Create a unique ID
     let mut id: i32 = id::random_10_digit();
     while ignore.contains_key(&id) {

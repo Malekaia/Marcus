@@ -2,7 +2,7 @@ use crate::core::re;
 use regex::{Captures, Regex};
 
 #[derive(Debug)]
-pub struct Blockquote {
+struct Blockquote {
   pub size: usize,
   pub text: String,
   pub cite: String

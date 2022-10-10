@@ -1,10 +1,9 @@
 use crate::core::re;
-use regex::{Captures, Regex};
+use regex::Captures;
 
+// Parse: Highlights (`<mark />`)
 pub fn default(html: &mut String) {
-  // Parse: Highlights (`<mark />`)
-  let re_highlight: Regex = re::from(re::HIGHLIGHT);
-  re::parse(html, re_highlight, | capture: Captures |
+  re::parse(html, re::from(re::HIGHLIGHT), | capture: Captures |
     format!("<mark>{}</mark>", &capture[1].trim())
   );
 }

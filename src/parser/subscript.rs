@@ -1,10 +1,9 @@
 use crate::core::re;
-use regex::{Captures, Regex};
+use regex::Captures;
 
 // Parse: Subscript
 pub fn default(html: &mut String) {
-  let re_subscript: Regex = re::from(re::SUBSCRIPT);
-  re::parse(html, re_subscript, | capture: Captures |
+  re::parse(html, re::from(re::SUBSCRIPT), | capture: Captures |
     format!("<sub>{}</sub>", &capture[1].trim())
   );
 }

@@ -1,10 +1,9 @@
 use crate::core::re;
-use regex::{Captures, Regex};
+use regex::Captures;
 
 // Parse: Strikethroughs
 pub fn default(html: &mut String) {
-  let re_strikethrough: Regex = re::from(re::STRIKETHROUGH);
-  re::parse(html, re_strikethrough, | capture: Captures |
+  re::parse(html, re::from(re::STRIKETHROUGH), | capture: Captures |
     format!("<del>{}</del>", &capture[1].trim())
   );
 }

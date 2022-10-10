@@ -1,5 +1,5 @@
 use crate::core::re;
-use regex::{Captures, Regex};
+use regex::Captures;
 
 // Table type shorthands to improve visual grepping of table components
 type Cell = String;
@@ -26,8 +26,7 @@ fn section_to_html(section: Table, name: &str) -> String {
 
 // Parse: Tables
 pub fn default(html: &mut String) {
-  let re_table: Regex = re::from(re::TABLE);
-  re::parse(html, re_table, | capture: Captures | {
+  re::parse(html, re::from(re::TABLE), | capture: Captures | {
     // Split the table capture into lines
     let table: Table = capture[0].trim().lines()
       // Collect the cells

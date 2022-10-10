@@ -1,10 +1,10 @@
 use crate::core::re;
-use regex::{Captures, Regex};
+use regex::Captures;
 use std::collections::HashMap;
 use url::Url;
 
 #[derive(Debug)]
-pub struct Link {
+struct Link {
   pub href: String,
   pub title: String,
   pub is_footnote: bool
@@ -49,8 +49,7 @@ pub fn default(html: &mut String) {
   let mut links: HashMap<String, Link> = HashMap::new();
 
   // Link definition (with title):
-  let re_link_define_with_title: Regex = re::from(re::LINK_DEFINE_WITH_TITLE);
-  re::parse(html, re_link_define_with_title, | capture: Captures | {
+  re::parse(html, re::from(re::LINK_DEFINE_WITH_TITLE), | capture: Captures | {
     // Prevent link titles from being defined improperly
     validate_title_definitions(&capture[3], &capture[5], "links");
     // Extract the link identifier, href and title
@@ -64,8 +63,7 @@ pub fn default(html: &mut String) {
   });
 
   // Link definition (without title):
-  let re_link_define: Regex = re::from(re::LINK_DEFINE);
-  re::parse(html, re_link_define, | capture: Captures | {
+  re::parse(html, re::from(re::LINK_DEFINE), | capture: Captures | {
     // Extract the link identifier, href and title
     let href: String = capture[2].trim().to_string();
     // Determine if the link is a footnote and extract the identifier
@@ -77,8 +75,7 @@ pub fn default(html: &mut String) {
   });
 
   // Images (with title):
-  let re_image_with_title: Regex = re::from(re::IMAGE_WITH_TITLE);
-  re::parse(html, re_image_with_title, | capture: Captures | {
+  re::parse(html, re::from(re::IMAGE_WITH_TITLE), | capture: Captures | {
     // Prevent link titles from being defined improperly
     validate_title_definitions(&capture[3], &capture[5], "images");
     // Return the formatted HTML string (using a predefined link or the captured links)
@@ -94,23 +91,21 @@ pub fn default(html: &mut String) {
   });
 
   // Images (without title):
-  let re_image: Regex = re::from(re::IMAGE);
-  re::parse(html, re_image, | capture: Captures | {
+  re::parse(html, re::from(re::IMAGE), | capture: Captures | {
     // Return the formatted HTML string (using a predefined link or the captured links)
     let (src, alt): (String, &str) = (capture[2].trim().to_string(), &capture[1].trim());
-    let defined: String = format!("<img src=\"{src}\" alt=\"{alt}\" />", src = src, alt = alt);
+    let defined: String = format!("<img src=\"{src}\" alt=\"{alt}\" />");
     html_from_link(&links, src, defined, | link: &Link | -> String {
       if !link.title.is_empty() {
-        format!("<img src=\"{src}\" alt=\"{alt}\" title=\"{title}\" />", src = link.href, alt = alt, title = link.title)
+        format!("<img src=\"{src}\" alt=\"{alt}\" title=\"{title}\" />", src = link.href, title = link.title)
       } else {
-        format!("<img src=\"{src}\" alt=\"{alt}\" />", src = link.href, alt = alt)
+        format!("<img src=\"{src}\" alt=\"{alt}\" />", src = link.href)
       }
     })
   });
 
   // Hyperlinks (with title):
-  let re_link_with_title: Regex = re::from(re::LINK_WITH_TITLE);
-  re::parse(html, re_link_with_title, | capture: Captures | {
+  re::parse(html, re::from(re::LINK_WITH_TITLE), | capture: Captures | {
     // Prevent link titles from being defined improperly
     validate_title_definitions(&capture[3], &capture[5], "images");
     // Return the formatted HTML string (using a predefined link or the captured links)
@@ -126,23 +121,21 @@ pub fn default(html: &mut String) {
   });
 
   // Hyperlinks (without title):
-  let re_link: Regex = re::from(re::LINK);
-  re::parse(html, re_link, | capture: Captures | {
+  re::parse(html, re::from(re::LINK), | capture: Captures | {
     // Return the formatted HTML string (using a predefined link or the captured links)
     let (href, text): (String, &str) = (capture[2].trim().to_string(), &capture[1].trim());
-    let defined: String = format!("<a href=\"{href}\">{text}</a>", href = href, text = text);
+    let defined: String = format!("<a href=\"{href}\">{text}</a>");
     html_from_link(&links, href, defined, | link: &Link | -> String {
       if !link.title.is_empty() {
-        format!("<a href=\"{href}\" title=\"{title}\">{text}</a>", href = link.href, text = text, title = link.title)
+        format!("<a href=\"{href}\" title=\"{title}\">{text}</a>", href = link.href, title = link.title)
       } else {
-        format!("<a href=\"{href}\">{text}</a>", href = link.href, text = text)
+        format!("<a href=\"{href}\">{text}</a>", href = link.href)
       }
     })
   });
 
   // Footnotes:
-  let re_footnote: Regex = re::from(re::FOOTNOTE);
-  re::parse(html, re_footnote, | capture: Captures | {
+  re::parse(html, re::from(re::FOOTNOTE), | capture: Captures | {
     let index: String = capture[1].trim().to_string();
     if links.contains_key(&index) {
       let link: &Link = links.get(&index).unwrap();

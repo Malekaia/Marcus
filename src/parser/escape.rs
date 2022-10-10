@@ -1,10 +1,9 @@
 use crate::core::{escape, re};
-use regex::{Captures, Regex};
+use regex::Captures;
 
+// Parse: HTML escapes
 pub fn default(html: &mut String) {
-  // Parse: HTML escapes
-  let re_escape: Regex = re::from(re::ESCAPE);
-  re::parse(html, re_escape, | capture: Captures |
+  re::parse(html, re::from(re::ESCAPE), | capture: Captures |
     escape::ascii(&capture[1])
   );
 }

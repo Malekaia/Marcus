@@ -29,8 +29,8 @@ fn main() {
     parser::definition_list::default(&mut html);
     parser::table::default(&mut html);
     parser::paragraphs::default(&mut html);
-    parser::cleanup::output(&mut html);
     parser::inline_ignore::show(&mut html, ignore);
+
     // Write to the test file
     fileio::write_file(&file_path.replace(".md", ".html"), html);
   }

@@ -1,13 +1,10 @@
 use crate::core::re;
 use regex::{Captures, Regex};
 
+// Parse: Definition list
 pub fn default(html: &mut String) {
-  // Parse: Definition list
-  let re_definition_list: Regex = re::from(re::DEFINITION_LIST);
-
   let re_dd_start: Regex = re::from(r"^[\s]{0,}:[\s]{0,}(.*?)$");
-
-  re::parse(html, re_definition_list, | capture: Captures | {
+  re::parse(html, re::from(re::DEFINITION_LIST), | capture: Captures | {
     let mut result: String = format!("{}<dl>\n", &capture[1]);
     for line in capture[0].lines() {
       if line.trim().is_empty() {
