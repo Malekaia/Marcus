@@ -1,0 +1,215 @@
+<p><b>0, 0, 0</b>: no header, no body, no footer => Ignore</p>
+
+<p><b>1, 0, 0</b>: header, no body, no footer => Body</p>
+
+
+<table>
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Left columns</td>
+      <td>Right columns</td>
+      <td>Optional column</td>
+    </tr>
+    <tr>
+      <td>left col 1</td>
+      <td>right col 1</td>
+    </tr>
+    <tr>
+      <td>left col 2</td>
+      <td></td>
+      <td>Optional value</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>right col 3</td>
+    </tr>
+  </tbody>
+  <tfoot>
+  </tfoot>
+</table>
+
+<p><b>1, 1, 0</b>: header, body, no footer => Header and body</p>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Left columns</th>
+      <th>Right columns</th>
+      <th>Optional column</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>left col 1</td>
+      <td>right col 1</td>
+    </tr>
+    <tr>
+      <td>left col 2</td>
+      <td></td>
+      <td>Optional value</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>right col 3</td>
+    </tr>
+    <tr>
+      <td>Left columns</td>
+      <td>Right columns</td>
+      <td></td>
+    </tr>
+  </tbody>
+  <tfoot>
+  </tfoot>
+</table>
+
+<p><b>1, 1, 1</b>: header, body, footer => Header, body and footer</p>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Left columns</th>
+      <th>Right columns</th>
+      <th>Optional column</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>left col 1</td>
+      <td>right col 1</td>
+    </tr>
+    <tr>
+      <td>left col 2</td>
+      <td></td>
+      <td>Optional value</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>right col 3</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>Left columns</th>
+      <th>Right columns</th>
+      <th></th>
+    </tr>
+  </tfoot>
+</table>
+
+<p><b>0, 0, 1</b>: no header, no body, footer => Body</p>
+
+
+<table>
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td>right col 3</td>
+    </tr>
+    <tr>
+      <td>Left columns</td>
+      <td>Right columns</td>
+      <td></td>
+    </tr>
+  </tbody>
+  <tfoot>
+  </tfoot>
+</table>
+
+<p><b>0, 1, 1</b>: no header, body, footer => Body and footer</p>
+
+
+<table>
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Left columns</td>
+      <td>Right columns</td>
+      <td>Optional column</td>
+    </tr>
+    <tr>
+      <td>left col 1</td>
+      <td>right col 1</td>
+    </tr>
+    <tr>
+      <td>left col 2</td>
+      <td></td>
+      <td>Optional value</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>right col 3</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>Left columns</th>
+      <th>Right columns</th>
+      <th></th>
+    </tr>
+  </tfoot>
+</table>
+
+<p><b>1, 0, 1</b>: header, no body, footer => Header and body</p>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>left col 2</th>
+      <th></th>
+      <th>Optional value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td>right col 3</td>
+    </tr>
+  </tbody>
+  <tfoot>
+  </tfoot>
+</table>
+
+<p><b>0, 1, 0</b>: no header, body, no footer => Body</p>
+
+
+<table>
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+      <td>left col 2</td>
+      <td></td>
+      <td>Optional value</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>right col 3</td>
+    </tr>
+    <tr>
+      <td>left col 2</td>
+      <td></td>
+      <td>Optional value</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>right col 3</td>
+    </tr>
+  </tbody>
+  <tfoot>
+  </tfoot>
+</table>
+
+<style type="text/css">
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+</style>

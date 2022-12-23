@@ -1,0 +1,34 @@
+<p style="color: blue">This is a definition list with varying whitespace:</p>
+
+<dl>
+  <dt>First Term</dt>
+  <dd>This is the definition of the first term.</dd>
+  <dt>Second Term</dt>
+  <dd>This is one definition of the second term.</dd>
+  <dd>This is another definition of the second term.</dd>
+</dl>
+
+<p style="color: blue">Here is a definition list with even more whitespace</p>
+
+
+<dl>
+  <dt>First Term</dt>
+  <dd>This is the definition of the first term.</dd>
+  <dt>Second Term</dt>
+  <dd>This is one definition of the second term.</dd>
+  <dd>This is another definition of the second term.</dd>
+</dl>
+
+<p style="color: blue">Those definition lists should then output the following HTML:</p>
+
+<pre lang="html">
+<p>&#60;dl&#62;</p>
+<p> &#60;dt&#62;First Term&#60;&#47;dt&#62;</p>
+<p> &#60;dd&#62;This is the definition of the first term.&#60;&#47;dd&#62;</p>
+<p> &#60;dt&#62;Second Term&#60;&#47;dt&#62;</p>
+<p> &#60;dd&#62;This is one definition of the second term.&#60;&#47;dd&#62;</p>
+<p> &#60;dd&#62;This is another definition of the second term.&#60;&#47;dd&#62;</p>
+<p>&#60;&#47;dl&#62;</p>
+</pre>
+
+<p style="color: blue">Notice how the HTML is escaped and has a language specifier in the source code?</p>

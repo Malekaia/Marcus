@@ -1,0 +1,8 @@
+[package]
+name = "marcus_docs"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+glob = "0.3.0"
+marcus = "0.1.0"
