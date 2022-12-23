@@ -1,6 +1,6 @@
 # Marcus
 ## Description:
-[Marcus](https://crates.io/crates/marcus) is an experimental Markdown parser written in Rust. It uses [regular expressions](https://docs.rs/regex/latest/regex/#example-iterating-over-capture-groups) and built-in methods (for the [str](https://doc.rust-lang.org/std/primitive.str.html#implementations) &amp; [String](https://doc.rust-lang.org/std/string/struct.String.html#implementations) types) to convert Markdown into HTML. Please note that certain test files (`*.md`) aren't rendered properly by Github Preview due to a lack of support for the full Markdown specification.
+[Marcus](https://crates.io/crates/marcus) is an experimental Markdown parser written in Rust. It uses [regular expressions](https://docs.rs/regex/latest/regex/#example-iterating-over-capture-groups) and built-in methods (for the [str](https://doc.rust-lang.org/std/primitive.str.html#implementations) &amp; [String](https://doc.rust-lang.org/std/string/struct.String.html#implementations) types) to convert Markdown into HTML. Please note that certain test files (`*.md`) aren't rendered properly by GitHub Preview due to a lack of support for the full Markdown specification.
 
 ## Demonstration:
 Include the following dependencies in the `[dependencies]` section of the `Cargo.toml` file:
@@ -10,7 +10,7 @@ glob = "0.3.0"
 marcus = "0.1.1"
 ```
 
-The Marcus crate can also be included from the [Github repository](https://github.com/Malekaia/Marcus):
+The Marcus crate can also be included from the [GitHub repository](https://github.com/Malekaia/Marcus):
 
 ```rust
 glob = "0.3.0"
@@ -47,7 +47,7 @@ fn main() {
 }
 ```
 
-**Note**: The test files (`.md`) used in this demonstration and their corresponding outputs (`.html`) are available to download in the [docs](https://github.com/Malekaia/Marcus/tree/main/docs) folder.
+**Note**: The test files (`.md`) used in this demonstration and their corresponding outputs (`.html`) are available to download in the [docs folder](https://github.com/Malekaia/Marcus/tree/main/docs).
 
 ## Licence:
 The source code included in this repository is distributed, for free, under the [MIT Licence](https://choosealicense.com/licenses/mit/), for the full license, see [LICENSE.md](https://github.com/Malekaia/Marcus/blob/master/LICENSE.md).
