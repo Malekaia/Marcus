@@ -10,7 +10,7 @@ glob = "0.3.0"
 marcus = "0.1.1"
 ```
 
-The Marcus crates can also be included from the [Github repository](https://github.com/Malekaia/Marcus):
+The Marcus crate can also be included from the [Github repository](https://github.com/Malekaia/Marcus):
 
 ```rust
 glob = "0.3.0"
