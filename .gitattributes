@@ -1,7 +1,0 @@
-# Linguist overrides
-# https://joshuatz.com/posts/2019/how-to-get-github-to-recognize-a-pure-markdown-repo/
-Cargo.toml linguist-detectable=false
-license.md linguist-detectable=false
-LICENCE.md linguist-detectable=false
-readme.md linguist-detectable=false
-README.md linguist-detectable=false
