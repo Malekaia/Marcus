@@ -1,13 +1,13 @@
 [package]
 name = "marcus"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "An experimental Markdown parser written in Rust"
 license = "MIT"
 readme = "README.md"
 homepage = "https://github.com/Malekaia/Marcus"
 repository = "https://github.com/Malekaia/Marcus"
-documentation = "https://github.com/Malekaia/Marcus-Docs"
+documentation = "https://github.com/Malekaia/Marcus/tree/main/docs"
 
 [profile.dev]
 opt-level = 1
