@@ -5,7 +5,7 @@ edition = "2021"
 description = "An experimental Markdown parser written in Rust"
 license = "MIT"
 readme = "README.md"
-homepage = "https://github.com/Malekaia/Marcus"
+homepage = "https://malekai.co.uk/portfolio/projects/Marcus"
 repository = "https://github.com/Malekaia/Marcus"
 documentation = "https://github.com/Malekaia/Marcus/tree/main/docs"
 
